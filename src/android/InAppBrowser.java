@@ -63,6 +63,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.net.http.SslError;
+import android.webkit.SslErrorHandler;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.Config;
@@ -1428,6 +1430,12 @@ public class InAppBrowser extends CordovaPlugin {
             } catch (JSONException ex) {
                 LOG.d(LOG_TAG, "Should never happen");
             }
+        }
+
+        @Override
+        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+            handler.proceed();
+            return;
         }
 
         /**
