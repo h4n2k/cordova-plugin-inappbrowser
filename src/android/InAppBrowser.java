@@ -57,6 +57,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.net.http.SslError;
 import android.webkit.SslErrorHandler;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.Config;
@@ -1222,7 +1224,7 @@ public class InAppBrowser extends CordovaPlugin {
 
         @Override
         public void onReceivedSslError(WebView view, final SslErrorHandler handler, SslError error) {
-            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            final AlertDialog.Builder builder = new AlertDialog.Builder(cordova.getActivity());
             String message = "SSL Certificate error.";
             switch (error.getPrimaryError()) {
                 case SslError.SSL_UNTRUSTED:
